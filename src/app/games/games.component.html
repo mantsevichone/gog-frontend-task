@@ -1,0 +1,22 @@
+<div>
+  <p>games works!</p>
+  <div>
+    <div>
+      <h1>GAME OF THE WEEK</h1>
+      <img [src]="gameOfTheWeek?.imgSrc" [alt]="gameOfTheWeek?.name" />
+    </div>
+    <ul>
+      @for (game of games; track game.id) {
+      <li>
+        <img [src]="game.imgSrc" [alt]="game.name" />
+        <span>{{ game.name | uppercase }}</span>
+        -
+        <span>{{ game.price | currency }}</span>
+        @if (game.discount) {
+        <span>: {{ game.discount }}</span>
+        }
+      </li>
+      }
+    </ul>
+  </div>
+</div>
