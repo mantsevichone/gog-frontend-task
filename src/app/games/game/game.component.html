@@ -1,0 +1,17 @@
+<div>
+  <img [src]="game().imgSrc" [alt]="game().name" />
+  <p>{{ game().name | uppercase }}</p>
+
+  @if (game().discount) {
+    <span>{{ game().discount }}</span>
+  }
+  @if (owned()) {
+    <button disabled>OWNED</button>
+  } @else if (inCart()) {
+    <button>IN CART</button>
+  } @else {
+    <button (click)="priceClicked.emit()">
+      {{ game().price | currency }}
+    </button>
+  }
+</div>
