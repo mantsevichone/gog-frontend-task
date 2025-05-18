@@ -1,0 +1,8 @@
+<div>
+  <img [src]="game().imgSrc" [alt]="game().name" />
+  <div>
+    <span>{{ game().name | uppercase }}</span>
+    <button (click)="removeClicked.emit()">Remove</button>
+  </div>
+  <span>{{ game().price | currency }}</span>
+</div>
