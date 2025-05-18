@@ -7,15 +7,12 @@
     </div>
     <ul>
       @for (game of games; track game.id) {
-      <li>
-        <img [src]="game.imgSrc" [alt]="game.name" />
-        <span>{{ game.name | uppercase }}</span>
-        -
-        <span>{{ game.price | currency }}</span>
-        @if (game.discount) {
-        <span>: {{ game.discount }}</span>
-        }
-      </li>
+        <app-game
+          [game]="game"
+          [owned]="ownedGameIDs.includes(game.id)"
+          [inCart]="cartService.has(game.id)"
+          (priceClicked)="cartService.add(game)"
+        />
       }
     </ul>
   </div>
