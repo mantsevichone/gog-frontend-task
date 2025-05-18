@@ -1,11 +1,12 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 
 import { CartService } from '../cart.service';
+import { CartGameComponent } from './cart-game/cart-game.component';
+import { CartHeaderComponent } from './cart-header/cart-header.component';
 
 @Component({
   selector: 'app-cart',
-  imports: [CurrencyPipe, UpperCasePipe],
+  imports: [CartGameComponent, CartHeaderComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
@@ -14,7 +15,7 @@ export class CartComponent {
 
   cartService = inject(CartService);
 
-  cartSizeMessage = computed(() => {
+  cartSizeTitle = computed(() => {
     const singularOrPlural = this.cartService.count() === 1 ? 'item' : 'items';
 
     return `${this.cartService.count()} ${singularOrPlural} in cart`;

@@ -5,21 +5,17 @@
   @if (isCartOpen()) {
     <div>
       @if (cartService.count() > 0) {
-        <div>
-          <strong>{{ cartSizeMessage() | uppercase }}</strong>
-          <strong>{{ cartService.total() | currency }}</strong>
-          <button (click)="cartService.clear()">CLEAR CART</button>
-        </div>
+        <app-cart-header
+          [title]="cartSizeTitle()"
+          [total]="cartService.total()"
+          (clearClicked)="cartService.clear()"
+        />
       }
       @for (game of cartService.cart(); track game.id) {
-        <div>
-          <img [src]="game.imgSrc" [alt]="game.name" />
-          <div>
-            <span>{{ game.name | uppercase }}</span>
-            <button (click)="cartService.remove(game.id)">Remove</button>
-          </div>
-          <span>{{ game.price | currency }}</span>
-        </div>
+        <app-cart-game
+          [game]="game"
+          (removeClicked)="cartService.remove(game.id)"
+        />
       } @empty {
         <p>Your cart is empty</p>
       }
