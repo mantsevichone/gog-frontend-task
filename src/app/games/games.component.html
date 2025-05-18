@@ -1,19 +1,14 @@
 <div>
-  <p>games works!</p>
-  <div>
-    <div>
-      <h1>GAME OF THE WEEK</h1>
-      <img [src]="gameOfTheWeek?.imgSrc" [alt]="gameOfTheWeek?.name" />
-    </div>
-    <ul>
-      @for (game of games; track game.id) {
-        <app-game
-          [game]="game"
-          [owned]="ownedGameIDs.includes(game.id)"
-          [inCart]="cartService.has(game.id)"
-          (priceClicked)="cartService.add(game)"
-        />
-      }
-    </ul>
-  </div>
+  <h1>GAME OF THE WEEK</h1>
+  @if (gameOfTheWeek) {
+    <app-game-of-week [game]="gameOfTheWeek" />
+  }
+  @for (game of games; track game.id) {
+    <app-game
+      [game]="game"
+      [owned]="ownedGameIDs.includes(game.id)"
+      [inCart]="cartService.has(game.id)"
+      (priceClicked)="cartService.add(game)"
+    />
+  }
 </div>

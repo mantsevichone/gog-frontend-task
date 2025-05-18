@@ -4,10 +4,11 @@ import { Game } from './shared/game.model';
 import { GameService } from './shared/game.service';
 import { CartService } from '../shared/cart.service';
 import { GameComponent } from './game/game.component';
+import { GameOfWeekComponent } from "./game-of-week/game-of-week.component";
 
 @Component({
   selector: 'app-games',
-  imports: [GameComponent],
+  imports: [GameComponent, GameOfWeekComponent],
   templateUrl: './games.component.html',
   styleUrl: './games.component.css',
 })
