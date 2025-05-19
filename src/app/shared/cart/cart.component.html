@@ -1,9 +1,9 @@
 <div>
-  <button (click)="toggleCartAppearance()">
+  <button class="cart-btn" (click)="toggleCartAppearance()">
     Cart {{ cartService.count() }}
   </button>
   @if (isCartOpen()) {
-    <div>
+    <div class="cart-dropdown">
       @if (cartService.count() > 0) {
         <app-cart-header
           [title]="cartSizeTitle()"
