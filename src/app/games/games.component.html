@@ -1,7 +1,9 @@
-<div>
-  <h1>GAME OF THE WEEK</h1>
+<main>
   @if (gameOfTheWeek) {
-    <app-game-of-week [game]="gameOfTheWeek" />
+    <ng-container>
+      <h1>GAME OF THE WEEK</h1>
+      <app-game-of-week [game]="gameOfTheWeek" />
+    </ng-container>
   }
   @for (game of games; track game.id) {
     <app-game
@@ -11,4 +13,4 @@
       (priceClicked)="cartService.add(game)"
     />
   }
-</div>
+</main>
