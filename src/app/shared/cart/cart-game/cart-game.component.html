@@ -3,8 +3,8 @@
   (mouseenter)="isRemovable = true"
   (mouseleave)="isRemovable = false"
 >
-  <img [src]="game().imgSrc" [alt]="game().name" />
-  <div>
+  <img [src]="game().imgSrc" [alt]="game().name" width="100" height="60" />
+  <div class="cart-game-name">
     <p>{{ game().name | uppercase }}</p>
     @if (isRemovable) {
       <button (click)="removeClicked.emit()">Remove</button>

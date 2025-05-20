@@ -1,9 +1,14 @@
-<div>
-  <button class="cart-btn" (click)="toggleCartAppearance()">
-    Cart {{ cartService.count() }}
+<div class="cart">
+  <button
+    class="cart-btn"
+    [class.active]="isCartOpen()"
+    (click)="toggleCartAppearance()"
+  >
+    <img src="/assets/cart.svg" alt="cart icon" />
+    <span>{{ cartService.count() }}</span>
   </button>
   @if (isCartOpen()) {
-    <div class="cart-dropdown">
+    <div class="cart-dropdown" [class.empty]="cartService.count() === 0">
       @if (cartService.count() > 0) {
         <app-cart-header
           [title]="cartSizeTitle()"
@@ -17,7 +22,10 @@
           (removeClicked)="cartService.remove(game.id)"
         />
       } @empty {
-        <p>Your cart is empty</p>
+        <ng-container>
+          <img src="/assets/cart.svg" alt="cart icon" width="34" height="30" />
+          <p>Your cart is empty</p>
+        </ng-container>
       }
     </div>
   }

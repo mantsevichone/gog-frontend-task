@@ -1,0 +1,28 @@
+.cart-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+
+  strong {
+    font-size: 15px;
+    color: #1a1a1a;
+
+    &:first-child {
+      flex-grow: 1;
+    }
+  }
+
+  button {
+    width: 132px;
+    height: 43px;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    background: linear-gradient(0deg, #7a3dc6, #b65ae2);
+    cursor: pointer;
+  }
+}
