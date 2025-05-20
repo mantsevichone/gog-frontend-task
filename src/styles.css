@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+}
+
+:root {
+  --max-width-large: 1060px;
+  --max-width-medium: 628px;
+  --max-width-small: 412px;
+  --max-width-xsmall: 100%;
+}
