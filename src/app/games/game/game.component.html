@@ -1,17 +1,19 @@
 <div class="game">
-  <img [src]="game().imgSrc" [alt]="game().name" />
+  <img [src]="game().imgSrc" [alt]="game().name" width="196" height="110" />
   <p>{{ game().name | uppercase }}</p>
 
-  @if (game().discount) {
-    <span>{{ game().discount }}</span>
-  }
-  @if (owned()) {
-    <button disabled>OWNED</button>
-  } @else if (inCart()) {
-    <button>IN CART</button>
-  } @else {
-    <button (click)="priceClicked.emit()">
-      {{ game().price | currency }}
-    </button>
-  }
+  <div class="game-price">
+    @if (game().discount) {
+      <span>{{ game().discount }}</span>
+    }
+    @if (owned()) {
+      <button disabled>OWNED</button>
+    } @else if (inCart()) {
+      <button class="in-cart">IN CART</button>
+    } @else {
+      <button (click)="priceClicked.emit()">
+        {{ game().price | currency }}
+      </button>
+    }
+  </div>
 </div>

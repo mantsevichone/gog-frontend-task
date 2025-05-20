@@ -1,0 +1,56 @@
+.game {
+  width: 196px;
+  height: 186px;
+  display: flex;
+  flex-direction: column;
+  background-color: #e0e0e0;
+
+  p {
+    margin: 10px 10px 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+  }
+
+  .game-price {
+    padding: 0 7px 7px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 6px;
+
+    span {
+      padding: 3px 7px 4px;
+      font-size: 13px;
+      line-height: 100%;
+      font-weight: 600;
+      color: #f2f2f2;
+      background-color: #00905e;
+      border: 1px solid #00905e;
+      border-radius: 2px;
+    }
+
+    button {
+      padding: 3px 7px 4px;
+      font-size: 13px;
+      line-height: 100%;
+      font-weight: 600;
+      color: #404040;
+      background-color: #e0e0e0;
+      border: 1px solid #979797;
+      border-radius: 2px;
+      box-shadow: 0px 1px 1px rgba(198, 198, 198, 0.5);
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      &.in-cart {
+        pointer-events: none;
+      }
+    }
+  }
+}

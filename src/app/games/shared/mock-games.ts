@@ -3,7 +3,7 @@ import { Game } from './game.model';
 export const GAMES: Game[] = [
   {
     id: 1,
-    name: 'oddworld: stranger’swrath',
+    name: 'oddworld: stranger’s wrath',
     price: 9.99,
     discount: '-50%',
     imgSrc: '/assets/oddworld.jpg',

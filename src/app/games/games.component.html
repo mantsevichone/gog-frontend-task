@@ -1,16 +1,18 @@
-<main>
+<main class="games">
   @if (gameOfTheWeek) {
     <ng-container>
       <h1>GAME OF THE WEEK</h1>
       <app-game-of-week [game]="gameOfTheWeek" />
     </ng-container>
   }
-  @for (game of games; track game.id) {
-    <app-game
-      [game]="game"
-      [owned]="ownedGameIDs.includes(game.id)"
-      [inCart]="cartService.has(game.id)"
-      (priceClicked)="cartService.add(game)"
-    />
-  }
+  <div class="games-list">
+    @for (game of games; track game.id) {
+      <app-game
+        [game]="game"
+        [owned]="ownedGameIDs.includes(game.id)"
+        [inCart]="cartService.has(game.id)"
+        (priceClicked)="cartService.add(game)"
+      />
+    }
+  </div>
 </main>
