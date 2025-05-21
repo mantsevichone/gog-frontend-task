@@ -5,5 +5,5 @@ export const GAME_OF_THE_WEEK: Game = {
   name: 'the witcher: adventure game',
   price: 9.99,
   discount: '',
-  imgSrc: '/assets/witcher.png',
+  imgSrc: 'assets/witcher.png',
 };

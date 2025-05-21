@@ -2,6 +2,10 @@
 
 Assignment project
 
+## Demo
+
+To see this app without cloning, visit https://mantsevichone.github.io/gog-frontend-task.
+
 ## Development server
 
 To start a local development server, run:

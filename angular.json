@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "/gog-frontend-task/",
             "outputPath": "dist/gog-frontend-task",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -89,6 +90,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

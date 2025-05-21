@@ -6,7 +6,7 @@
     [class.active]="isCartOpen"
     (click)="toggleCartAppearance()"
   >
-    <img ngSrc="/assets/cart.svg" alt="cart icon" width="17" height="15" />
+    <img ngSrc="assets/cart.svg" alt="cart icon" width="17" height="15" />
     <span>{{ cartService.count() }}</span>
   </button>
   <ng-template
@@ -31,7 +31,7 @@
         />
       } @empty {
         <ng-container>
-          <img src="/assets/cart.svg" alt="cart icon" width="34" height="30" />
+          <img src="assets/cart.svg" alt="cart icon" width="34" height="30" />
           <p>Your cart is empty</p>
         </ng-container>
       }
