@@ -1,4 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { OverlayModule, ConnectedPosition } from '@angular/cdk/overlay';
 
 import { CartService } from '../cart.service';
@@ -7,7 +8,7 @@ import { CartHeaderComponent } from './cart-header/cart-header.component';
 
 @Component({
   selector: 'app-cart',
-  imports: [CartGameComponent, CartHeaderComponent, OverlayModule],
+  imports: [CartGameComponent, CartHeaderComponent, OverlayModule, NgOptimizedImage],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })

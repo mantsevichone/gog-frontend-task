@@ -1,11 +1,11 @@
 import { Component, input, output } from '@angular/core';
-import { CurrencyPipe, UpperCasePipe } from '@angular/common';
+import { CurrencyPipe, UpperCasePipe, NgOptimizedImage } from '@angular/common';
 
 import { Game } from '../shared/game.model';
 
 @Component({
   selector: 'app-game',
-  imports: [UpperCasePipe, CurrencyPipe],
+  imports: [CurrencyPipe, UpperCasePipe, NgOptimizedImage],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css',
 })

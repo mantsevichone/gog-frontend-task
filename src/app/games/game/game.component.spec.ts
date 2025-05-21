@@ -19,7 +19,7 @@ class TestHostComponent {
     name: 'Foo',
     price: 2,
     discount: '',
-    imgSrc: '',
+    imgSrc: '/test',
   };
   owned = false;
   inCart = false;
