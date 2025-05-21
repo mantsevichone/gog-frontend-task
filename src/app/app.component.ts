@@ -10,6 +10,4 @@ import { CartComponent } from './shared/cart/cart.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'gog-frontend-task';
-}
+export class AppComponent {}
