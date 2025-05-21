@@ -1,4 +1,5 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { OverlayModule, ConnectedPosition } from '@angular/cdk/overlay';
 
 import { CartService } from '../cart.service';
 import { CartGameComponent } from './cart-game/cart-game.component';
@@ -6,12 +7,21 @@ import { CartHeaderComponent } from './cart-header/cart-header.component';
 
 @Component({
   selector: 'app-cart',
-  imports: [CartGameComponent, CartHeaderComponent],
+  imports: [CartGameComponent, CartHeaderComponent, OverlayModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
-  isCartOpen = signal(false);
+  isCartOpen = false;
+  positions: ConnectedPosition[] = [
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetX: -1,
+    },
+  ];
 
   cartService = inject(CartService);
 
@@ -22,6 +32,6 @@ export class CartComponent {
   });
 
   toggleCartAppearance() {
-    this.isCartOpen.update((prev) => !prev);
+    this.isCartOpen = !this.isCartOpen;
   }
 }

@@ -32,10 +32,6 @@
 
 .cart-dropdown {
   width: 370px;
-  position: absolute;
-  top: 59px;
-  right: 0;
-  z-index: 1;
   background-color: white;
 
   &.empty {

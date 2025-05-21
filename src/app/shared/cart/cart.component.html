@@ -1,13 +1,21 @@
 <div class="cart">
   <button
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
     class="cart-btn"
-    [class.active]="isCartOpen()"
+    [class.active]="isCartOpen"
     (click)="toggleCartAppearance()"
   >
     <img src="/assets/cart.svg" alt="cart icon" />
     <span>{{ cartService.count() }}</span>
   </button>
-  @if (isCartOpen()) {
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="isCartOpen"
+    [cdkConnectedOverlayPositions]="positions"
+    (overlayOutsideClick)="isCartOpen = false"
+  >
     <div class="cart-dropdown" [class.empty]="cartService.count() === 0">
       @if (cartService.count() > 0) {
         <app-cart-header
@@ -28,5 +36,5 @@
         </ng-container>
       }
     </div>
-  }
+  </ng-template>
 </div>

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { OverlayModule, OverlayContainer } from '@angular/cdk/overlay';
 
 import { CartComponent } from './cart.component';
 import { CartService } from '../cart.service';
@@ -24,49 +25,73 @@ describe('CartComponent', () => {
   let fixture: ComponentFixture<CartComponent>;
   let element: HTMLElement;
   let cartService: CartService;
+  let overlayContainer: OverlayContainer;
+  let overlayContainerElement: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CartComponent],
+      imports: [CartComponent, OverlayModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
     cartService = TestBed.inject(CartService);
+    overlayContainer = TestBed.inject(OverlayContainer);
+    overlayContainerElement = overlayContainer.getContainerElement();
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    overlayContainer.ngOnDestroy();
+  });
+
   it('should open dropdown by click', () => {
-    expect(element.querySelector('.cart-dropdown')).toBeFalsy();
+    expect(overlayContainerElement.querySelector('.cart-dropdown')).toBeFalsy();
 
     element.querySelector('button')?.click();
     fixture.detectChanges();
 
-    expect(element.querySelector('.cart-dropdown')).toBeTruthy();
+    expect(
+      overlayContainerElement.querySelector('.cart-dropdown')
+    ).toBeTruthy();
+  });
+
+  it('should close dropdown by click outside', () => {
+    element.querySelector('button')?.click();
+    fixture.detectChanges();
+
+    expect(
+      overlayContainerElement.querySelector('.cart-dropdown')
+    ).toBeTruthy();
+
+    document.body.click();
+    fixture.detectChanges();
+
+    expect(overlayContainerElement.querySelector('.cart-dropdown')).toBeFalsy();
   });
 
   it('should show a placeholder while empty', () => {
-    component.isCartOpen.set(true);
+    component.isCartOpen = true;
     fixture.detectChanges();
 
     expect(element.querySelector('.cart-btn')?.textContent).toMatch('0');
 
-    const dropdown = element.querySelector('.cart-dropdown');
+    const dropdown = overlayContainerElement.querySelector('.cart-dropdown');
 
-    expect(dropdown?.childElementCount).toBe(1);
-    expect(dropdown?.firstElementChild?.textContent).toBe('Your cart is empty');
+    expect(dropdown?.childElementCount).toBe(2);
+    expect(dropdown?.lastElementChild?.textContent).toBe('Your cart is empty');
   });
 
   it('should show cart details', () => {
-    component.isCartOpen.set(true);
+    component.isCartOpen = true;
     cartService.add(fooGame);
     cartService.add(barGame);
     fixture.detectChanges();
 
     expect(element.querySelector('.cart-btn')?.textContent).toMatch('2');
 
-    const cartHeader = element.querySelector('.cart-header');
+    const cartHeader = overlayContainerElement.querySelector('.cart-header');
 
     const [title, total] = Array.from(
       cartHeader?.querySelectorAll('strong') ?? []
@@ -75,16 +100,18 @@ describe('CartComponent', () => {
     expect(title?.textContent).toBe('2 items in cart'.toUpperCase());
     expect(total?.textContent).toBe('$14.00');
 
-    expect(element.querySelectorAll('.cart-game')).toHaveSize(2);
+    expect(overlayContainerElement.querySelectorAll('.cart-game')).toHaveSize(
+      2
+    );
   });
 
   it('should react to cart item removal', () => {
-    component.isCartOpen.set(true);
+    component.isCartOpen = true;
     cartService.add(fooGame);
     cartService.add(barGame);
     fixture.detectChanges();
 
-    const fooInCart = element.querySelectorAll('.cart-game')[0];
+    const fooInCart = overlayContainerElement.querySelectorAll('.cart-game')[0];
 
     fooInCart?.dispatchEvent(new Event('mouseenter'));
     fixture.detectChanges();
@@ -93,7 +120,7 @@ describe('CartComponent', () => {
 
     expect(element.querySelector('.cart-btn')?.textContent).toMatch('1');
 
-    const cartHeader = element.querySelector('.cart-header');
+    const cartHeader = overlayContainerElement.querySelector('.cart-header');
 
     const [title, total] = Array.from(
       cartHeader?.querySelectorAll('strong') ?? []
@@ -102,24 +129,26 @@ describe('CartComponent', () => {
     expect(title?.textContent).toBe('1 item in cart'.toUpperCase());
     expect(total?.textContent).toBe('$9.00');
 
-    expect(element.querySelectorAll('.cart-game')).toHaveSize(1);
+    expect(overlayContainerElement.querySelectorAll('.cart-game')).toHaveSize(
+      1
+    );
   });
 
   it('should react to cart cleanup', () => {
-    component.isCartOpen.set(true);
+    component.isCartOpen = true;
     cartService.add(fooGame);
     cartService.add(barGame);
     fixture.detectChanges();
 
-    const cartHeader = element.querySelector('.cart-header');
+    const cartHeader = overlayContainerElement.querySelector('.cart-header');
     cartHeader?.querySelector('button')?.click();
     fixture.detectChanges();
 
     expect(element.querySelector('.cart-btn')?.textContent).toMatch('0');
 
-    const dropdown = element.querySelector('.cart-dropdown');
+    const dropdown = overlayContainerElement.querySelector('.cart-dropdown');
 
-    expect(dropdown?.childElementCount).toBe(1);
-    expect(dropdown?.firstElementChild?.textContent).toBe('Your cart is empty');
+    expect(dropdown?.childElementCount).toBe(2);
+    expect(dropdown?.lastElementChild?.textContent).toBe('Your cart is empty');
   });
 });
